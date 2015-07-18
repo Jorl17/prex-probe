@@ -15,12 +15,12 @@ public class CPUPercentUsageSampler<F> extends SimpleSamplerAdapter<CPUPercentUs
     }
 
     @Override
-    public void sample() {
+    protected void sampleData() {
         try {
             cpuPerc = this.sigar.getCpuPerc();
         } catch (SigarException e) {
             e.printStackTrace();
         }
-        this.feature = new CPUPercentUsage(cpuPerc.getCombined());
+        addFeature(new CPUPercentUsage(cpuPerc.getCombined()));
     }
 }

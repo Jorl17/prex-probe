@@ -11,10 +11,6 @@ public abstract class SimpleSamplerAdapter<F extends Feature> extends DataSample
         super(sigar);
     }
 
-    public SimpleSamplerAdapter() {
-        super();
-    }
-
     @Override
     public void start() {
 

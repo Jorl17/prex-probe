@@ -8,10 +8,16 @@ import BuildingBlocks.DataTimestamp;
 public abstract class Feature {
     private DataTimestamp timestamp;
 
+    public abstract String getFeatureName();
+    public abstract String getUnits();
     public abstract String getRepresentation();
 
+    public Feature(DataTimestamp time) {
+        this.timestamp = time;
+    }
+
     public Feature() {
-        this.timestamp = new DataTimestamp(); //Initialized to current time
+        this(new DataTimestamp()); //Initialized to current time
     }
 
     public DataTimestamp getTimestamp() {
@@ -24,6 +30,6 @@ public abstract class Feature {
 
     @Override
     public String toString() {
-        return "(" + timestamp + ", " + getRepresentation() + ")";
+        return "(" + timestamp + ", " + getFeatureName() + ", " + getRepresentation() + " " + getUnits() + ")";
     }
 }
