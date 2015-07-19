@@ -5,22 +5,25 @@ import BuildingBlocks.DataTimestamp;
 /**
  * Created by jorl17 on 18/07/15.
  */
-public class CPUPercentUsage extends Feature {
+public class PercentValue extends Feature {
     private double usage;
+    private String featureName;
 
-    public CPUPercentUsage(DataTimestamp time, double usage) {
+    public PercentValue(DataTimestamp time, String featureName, double usage) {
         super(time);
+        this.featureName = featureName;
         this.usage = usage;
     }
 
-    public CPUPercentUsage(double usage) {
+    public PercentValue(String featureName, double usage) {
         super();
+        this.featureName = featureName;
         this.usage = usage;
     }
 
     @Override
     public String getFeatureName() {
-        return "CPU Usage";
+        return featureName;
     }
 
     @Override
@@ -30,6 +33,6 @@ public class CPUPercentUsage extends Feature {
 
     @Override
     public String getRepresentation() {
-        return "" + usage;
+        return "" + usage*100.0f;
     }
 }

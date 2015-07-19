@@ -1,6 +1,6 @@
 package DataSamplers;
 
-import Features.CPUPercentUsage;
+import Features.PercentValue;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
@@ -8,7 +8,7 @@ import org.hyperic.sigar.SigarException;
 /**
  * Created by jorl17 on 18/07/15.
  */
-public class CPUPercentUsageSampler<F> extends SimpleSamplerAdapter<CPUPercentUsage> {
+public class CPUPercentUsageSampler extends SimpleSamplerAdapter {
     private CpuPerc cpuPerc;
     public CPUPercentUsageSampler(Sigar sigar) {
         super(sigar);
@@ -21,6 +21,6 @@ public class CPUPercentUsageSampler<F> extends SimpleSamplerAdapter<CPUPercentUs
         } catch (SigarException e) {
             e.printStackTrace();
         }
-        addFeature(new CPUPercentUsage(cpuPerc.getCombined()));
+        addFeature(new PercentValue("CPU", cpuPerc.getCombined()));
     }
 }

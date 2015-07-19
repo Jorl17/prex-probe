@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by jorl17 on 18/07/15.
  */
-public abstract class DataSampler<F extends Feature> {
+public abstract class DataSampler {
     private ArrayList<Feature> features;
     protected final Sigar sigar;
 

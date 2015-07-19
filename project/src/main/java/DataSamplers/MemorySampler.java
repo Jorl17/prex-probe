@@ -2,6 +2,7 @@ package DataSamplers;
 
 import Features.Feature;
 import Features.Memory;
+import Features.PercentValue;
 import org.hyperic.sigar.Mem;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
@@ -9,7 +10,7 @@ import org.hyperic.sigar.SigarException;
 /**
  * Created by jorl17 on 18/07/15.
  */
-public class MemorySampler<F extends Feature> extends SimpleSamplerAdapter<Memory> {
+public class MemorySampler extends SimpleSamplerAdapter {
     private Mem mem;
     public MemorySampler(Sigar sigar) {
         super(sigar);
@@ -32,5 +33,7 @@ public class MemorySampler<F extends Feature> extends SimpleSamplerAdapter<Memor
         addFeature(new Memory("ActualUsed", "B",  mem.getActualUsed()));
         addFeature(new Memory("Free", "B",  mem.getFree()));
         addFeature(new Memory("ActualFree", "B",  mem.getActualFree()));
+        addFeature(new PercentValue("Percent Free",  mem.getFreePercent()));
+        addFeature(new PercentValue("Percent Used",  mem.getUsedPercent()));
     }
 }
