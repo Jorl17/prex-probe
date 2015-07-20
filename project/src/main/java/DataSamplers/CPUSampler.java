@@ -32,14 +32,14 @@ public class CPUSampler extends SimpleSamplerAdapter {
         }
 
         addFeature(new PercentValue("CPU Usage", cpuPerc.getCombined()));
-        addFeature(new Data("CPU Idle time", "s", cpu.getIdle()));
-        addFeature(new Data("CPU Nice time", "s", cpu.getNice()));
-        addFeature(new Data("CPU Soft IRQ time", "s", cpu.getSoftIrq()));
-        addFeature(new Data("CPU Stolen time", "s", cpu.getStolen()));
-        addFeature(new Data("CPU Wait time", "s", cpu.getWait()));
-        addFeature(new Data("CPU User time", "s", cpu.getUser()));
-        addFeature(new Data("CPU Sys time", "s", cpu.getSys()));
-        addFeature(new Data("CPU Total time", "s", cpu.getTotal()));
+        addFeature(new Data("CPU Idle time", "1e-4 seconds", cpu.getIdle()));
+        addFeature(new Data("CPU Nice time", "1e-4seconds", cpu.getNice()));
+        addFeature(new Data("CPU Soft IRQ time", "1e-4 seconds", cpu.getSoftIrq()));
+        addFeature(new Data("CPU Stolen time", "1e-4 seconds", cpu.getStolen()));
+        addFeature(new Data("CPU Wait time", "1e-4 seconds", cpu.getWait()));
+        addFeature(new Data("CPU User time", "1e-4 seconds", cpu.getUser()));
+        addFeature(new Data("CPU Sys time", "1e-4 seconds", cpu.getSys()));
+        addFeature(new Data("CPU Total time", "1e-4 seconds", cpu.getTotal()));
         addFeature(new Data("CPU IRQ", "interrupts", cpu.getIrq()));
     }
 }
