@@ -1,4 +1,4 @@
-import DataSamplers.CPUPercentUsageSampler;
+import DataSamplers.CPUSampler;
 import DataSamplers.FileSystemSampler;
 import DataSamplers.MemorySampler;
 import Features.Feature;
@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws SigarException {
         Sigar sigar = new Sigar();
-        CPUPercentUsageSampler cpuPercentSampler = new CPUPercentUsageSampler(sigar);
+        CPUSampler cpuPercentSampler = new CPUSampler(sigar);
         MemorySampler memorySampler = new MemorySampler(sigar);
         FileSystemSampler diskSampler = new FileSystemSampler(sigar);
 
