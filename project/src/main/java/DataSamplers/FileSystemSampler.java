@@ -18,14 +18,14 @@ public class FileSystemSampler extends SimpleSamplerAdapter {
         try {
             for (FileSystem f : sigar.getFileSystemList()) {
                 usage = sigar.getFileSystemUsage(f.getDirName());
-                addFeature(new Data("# Reads (" + f.getDirName() + ")", "physical disk reads", usage.getDiskReads()));
-                addFeature(new Data("# Writes (" + f.getDirName() + ")", "physical disk writes", usage.getDiskWrites()));
-                addFeature(new Data("Reads (" + f.getDirName() + ")", "B", usage.getDiskReads()));
-                addFeature(new Data("Writes (" + f.getDirName() + ")", "B", usage.getDiskWrites()));
-                addFeature(new Data("# Files (" + f.getDirName() + ")", "File nodes", usage.getFiles()));
-                addFeature(new Data("Free (" + f.getDirName() + ")", "KBytes", usage.getFree()));
-                addFeature(new Data("Total (" + f.getDirName() + ")", "KBytes", usage.getTotal()));
-                addFeature(new PercentValue("Used (" + f.getDirName() + ")", usage.getUsePercent()));
+                addFeature(new Data("FS # Reads (" + f.getDirName() + ")", "physical disk reads", usage.getDiskReads()));
+                addFeature(new Data("FS # Writes (" + f.getDirName() + ")", "physical disk writes", usage.getDiskWrites()));
+                addFeature(new Data("FS Reads (" + f.getDirName() + ")", "B", usage.getDiskReads()));
+                addFeature(new Data("FS Writes (" + f.getDirName() + ")", "B", usage.getDiskWrites()));
+                addFeature(new Data("FS # Files (" + f.getDirName() + ")", "File nodes", usage.getFiles()));
+                addFeature(new Data("FS Free (" + f.getDirName() + ")", "KBytes", usage.getFree()));
+                addFeature(new Data("FS Total (" + f.getDirName() + ")", "KBytes", usage.getTotal()));
+                addFeature(new PercentValue("FS Used (" + f.getDirName() + ")", usage.getUsePercent()));
             }
         } catch (SigarException e) {
             e.printStackTrace();
