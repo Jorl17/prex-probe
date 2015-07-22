@@ -38,8 +38,8 @@ public class MemorySampler extends SimpleSamplerAdapter {
         addFeature(new Memory("ActualUsed", "B",  mem.getActualUsed()));
         addFeature(new Memory("Free", "B",  mem.getFree()));
         addFeature(new Memory("ActualFree", "B",  mem.getActualFree()));
-        addFeature(new PercentValue("Percent Free",  mem.getFreePercent()));
-        addFeature(new PercentValue("Percent Used",  mem.getUsedPercent()));
+        addFeature(new PercentValue("Percent Free",  mem.getFreePercent()/100.0f));
+        addFeature(new PercentValue("Percent Used",  mem.getUsedPercent()/100.0f));
         addFeature(new Memory("Free Swap", "B", swap.getFree()));
         addFeature(new Memory("Used Swap", "B", swap.getUsed()));
         addFeature(new Memory("Total Swap", "B", swap.getTotal()));
