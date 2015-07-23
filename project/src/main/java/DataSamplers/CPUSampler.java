@@ -30,8 +30,15 @@ public class CPUSampler extends SimpleSamplerAdapter {
         } catch (SigarException e) {
             e.printStackTrace();
         }
-
-        addFeature(new PercentValue("CPU Usage", cpuPerc.getCombined()));
+        
+        addFeature(new PercentValue("CPU Combined Usage", cpuPerc.getCombined()));
+        addFeature(new PercentValue("CPU Idle", cpuPerc.getIdle()));
+        addFeature(new PercentValue("CPU Nice", cpuPerc.getNice()));
+        addFeature(new PercentValue("CPU Soft IRQ", cpuPerc.getSoftIrq()));
+        addFeature(new PercentValue("CPU Stolen", cpuPerc.getStolen()));
+        addFeature(new PercentValue("CPU Wait", cpuPerc.getWait()));
+        addFeature(new PercentValue("CPU User", cpuPerc.getUser()));
+        addFeature(new PercentValue("CPU Sys", cpuPerc.getSys()));
         addFeature(new Data("CPU Idle time", "1e-4 seconds", cpu.getIdle()));
         addFeature(new Data("CPU Nice time", "1e-4seconds", cpu.getNice()));
         addFeature(new Data("CPU Soft IRQ time", "1e-4 seconds", cpu.getSoftIrq()));
