@@ -13,11 +13,9 @@ public abstract class SimpleSamplerAdapter extends DataSampler {
 
     @Override
     public void start() {
-
     }
 
     @Override
     public void stop() {
-
     }
 }

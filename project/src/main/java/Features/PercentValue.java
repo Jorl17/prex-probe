@@ -6,19 +6,19 @@ import BuildingBlocks.DataTimestamp;
  * Created by jorl17 on 18/07/15.
  */
 public class PercentValue extends Feature {
-    private double usage;
+    private double value;
     private String featureName;
 
-    public PercentValue(DataTimestamp time, String featureName, double usage) {
+    public PercentValue(DataTimestamp time, String featureName, double value) {
         super(time);
         this.featureName = featureName;
-        this.usage = usage;
+        this.value = value;
     }
 
-    public PercentValue(String featureName, double usage) {
+    public PercentValue(String featureName, double value) {
         super();
         this.featureName = featureName;
-        this.usage = usage;
+        this.value = value;
     }
 
     @Override
@@ -33,6 +33,6 @@ public class PercentValue extends Feature {
 
     @Override
     public String getRepresentation() {
-        return "" + usage*100.0f;
+        return "" + value *100.0f;
     }
 }

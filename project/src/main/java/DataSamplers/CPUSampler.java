@@ -30,7 +30,7 @@ public class CPUSampler extends SimpleSamplerAdapter {
         } catch (SigarException e) {
             e.printStackTrace();
         }
-        
+
         addFeature(new PercentValue("CPU Combined Usage", cpuPerc.getCombined()));
         addFeature(new PercentValue("CPU Idle", cpuPerc.getIdle()));
         addFeature(new PercentValue("CPU Nice", cpuPerc.getNice()));

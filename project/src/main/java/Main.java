@@ -29,8 +29,9 @@ public class Main {
             allFeatures.addAll(diskSampler.getProvidedFeatures());
             allFeatures.addAll(tcp.getProvidedFeatures());
             allFeatures.addAll(ifaceSampler.getProvidedFeatures());
-            for ( Feature f : allFeatures)
-                System.out.print(f.getFeatureName() + ": " + f.getRepresentation() + " " + f.getUnits() + ", ");
+            for ( Feature f : allFeatures )
+                //System.out.print(f.getFeatureName() + ": " + f.getRepresentation() + " " + f.getUnits() + ", ");
+                System.out.print(f.getRepresentation() + ", ");
             System.out.println();
             Utils.sleepNoInterrupt(1000);
         }
