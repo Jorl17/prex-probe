@@ -35,6 +35,5 @@ public class TCPSampler extends SimpleSamplerAdapter {
         addFeature(new Data("TCP Out Segs", "segments", tcp.getOutSegs()));
         addFeature(new Data("TCP Out Rsts", "rsts (?)", tcp.getOutRsts()));
         addFeature(new Data("TCP Retrans  Segs", "segments", tcp.getOutRsts()));
-
     }
 }
