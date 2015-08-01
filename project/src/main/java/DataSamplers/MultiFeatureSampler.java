@@ -34,6 +34,10 @@ public class MultiFeatureSampler extends SimpleSamplerAdapter {
         this(sigar, true, samplers);
     }
 
+    public void addSampler(DataSampler sampler) {
+        this.samplers.add(sampler);
+    }
+
     @Override
     protected void sampleData() {
         DataTimestamp now = new DataTimestamp();
@@ -44,7 +48,7 @@ public class MultiFeatureSampler extends SimpleSamplerAdapter {
             if ( forceMatchingTimestamps )
                 for ( Feature f : providedFeatures )
                     f.setTimestamp(now);
-            
+
             addFeatures(providedFeatures);
         }
     }
