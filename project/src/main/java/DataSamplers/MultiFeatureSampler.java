@@ -1,7 +1,7 @@
 package DataSamplers;
 
-import DataSamplers.DataSampler;
-import DataSamplers.SimpleSamplerAdapter;
+import BuildingBlocks.DataTimestamp;
+import Features.Feature;
 import org.hyperic.sigar.Sigar;
 
 import java.util.ArrayList;
@@ -12,23 +12,40 @@ import java.util.Collections;
  */
 public class MultiFeatureSampler extends SimpleSamplerAdapter {
     private ArrayList<DataSampler> samplers;
+    private boolean forceMatchingTimestamps;
 
-    public MultiFeatureSampler(Sigar sigar, ArrayList<DataSampler> samplers) {
+    public MultiFeatureSampler(Sigar sigar, boolean forceMatchingTimestamps, ArrayList<DataSampler> samplers) {
         super(sigar);
         this.samplers = samplers;
+        this.forceMatchingTimestamps = forceMatchingTimestamps;
+    }
+    public MultiFeatureSampler(Sigar sigar, ArrayList<DataSampler> samplers) {
+        this(sigar, true, samplers);
     }
 
-    public MultiFeatureSampler(Sigar sigar, DataSampler... samplers) {
+    public MultiFeatureSampler(Sigar sigar, boolean forceMatchingTimestamps, DataSampler... samplers) {
         super(sigar);
         this.samplers = new ArrayList<DataSampler>();
         Collections.addAll(this.samplers, samplers);
+        this.forceMatchingTimestamps = forceMatchingTimestamps;
+    }
+
+    public MultiFeatureSampler(Sigar sigar, DataSampler... samplers) {
+        this(sigar, true, samplers);
     }
 
     @Override
     protected void sampleData() {
+        DataTimestamp now = new DataTimestamp();
         for ( DataSampler sampler : samplers ) {
             sampler.sample();
-            addFeatures(sampler.getProvidedFeatures());
+            ArrayList<Feature> providedFeatures = sampler.getProvidedFeatures();
+
+            if ( forceMatchingTimestamps )
+                for ( Feature f : providedFeatures )
+                    f.setTimestamp(now);
+            
+            addFeatures(providedFeatures);
         }
     }
 
