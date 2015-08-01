@@ -36,6 +36,9 @@ public abstract class DataSampler {
     protected void addFeature(Feature f) {
         this.features.add(f);
     }
+    protected void addFeatures(ArrayList<Feature> f) {
+        this.features.addAll(f);
+    }
 
     public ArrayList<Feature> getProvidedFeatures() {
         return features;
