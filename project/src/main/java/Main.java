@@ -21,7 +21,7 @@ public class Main {
         private String csv = "test.csv";
 
         @Parameter(names = {"-s", "--stdout"}, description = "Also log to stdout")
-        private boolean logStdout = true;
+        private boolean logStdout = false;
 
         @Parameter(names = {"-p", "--period"}, description = "Sampling period")
         private int samplingPeriod = 1000;
