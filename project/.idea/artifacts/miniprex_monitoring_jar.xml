@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="miniprex-monitoring:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/miniprex_monitoring_jar</output-path>
+    <root id="archive" name="miniprex-monitoring.jar">
+      <element id="module-output" name="miniprex-monitoring" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/log4j/log4j/1.2.15/log4j-1.2.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/fusesource/sigar/1.6.4/sigar-1.6.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/beust/jcommander/1.48/jcommander-1.48.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
