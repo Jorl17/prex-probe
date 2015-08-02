@@ -13,6 +13,10 @@ public class CsvLogger extends SeparatorLoggerAdapter {
 
     public CsvLogger(String outfile, String separator) {
         super(separator);
+        if ( outfile == null ) {
+            this.writer = null;
+            return;
+        }
         try {
             this.writer = new BufferedWriter(new FileWriter(outfile));
         } catch (IOException e) {
@@ -46,6 +50,7 @@ public class CsvLogger extends SeparatorLoggerAdapter {
     }
 
     public void cleanup() {
+        if ( this.writer == null ) return;
         try {
             writer.close();
         } catch (IOException e) {
