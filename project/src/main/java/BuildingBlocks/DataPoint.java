@@ -23,9 +23,17 @@ public class DataPoint {
         return null;
     }
 
+    public String getFeatureString(String sep) {
+        return getTime() + sep + Utils.join(sep, features, Feature::getRepresentation);
+    }
+
+    public String getFeatureString() {
+        return getFeatureString(", ");
+    }
+
     @Override
     public String toString() {
-        return getTime() + ", " + Utils.join(", ", features, Feature::getRepresentation);
+        return getFeatureString();
     }
 
     public ArrayList<String> getHeaders() {

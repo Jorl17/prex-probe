@@ -7,4 +7,6 @@ import BuildingBlocks.DataPoint;
  */
 public interface DataLogger {
     void log(DataPoint point);
+    void logHeader(DataPoint point);
+    void cleanup();
 }
