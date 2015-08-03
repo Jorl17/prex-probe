@@ -42,7 +42,6 @@ public class PidExecutionManager extends ExecutionManager {
         try {
             renewSigar();
             ProcState procState = getSigar().getProcState(pid);
-            System.out.println(procState);
             switch (procState.getState()) {
                 case ProcState.SLEEP:
                 case ProcState.RUN:
