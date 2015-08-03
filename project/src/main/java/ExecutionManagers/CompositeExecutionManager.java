@@ -16,7 +16,7 @@ public class CompositeExecutionManager extends ExecutionManager {
         super(managedClass);
         this.managers = managers;
 
-        // Set a dummy listener for all of them
+        // Set a dummy listener for all of the other managers
         for (ExecutionManager m : managers)
             m.setManagedClass(() -> {});
     }
