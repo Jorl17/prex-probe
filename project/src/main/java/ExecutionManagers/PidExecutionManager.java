@@ -26,6 +26,14 @@ public class PidExecutionManager extends ExecutionManager {
         this(null, managedClass, pid, DEFAULT_MONITOR_INTERVAL);
     }
 
+    public PidExecutionManager(long pid, int monitorInterval) {
+        this(null, null, pid, monitorInterval);
+    }
+
+    public PidExecutionManager(long pid) {
+        this(null, null, pid, DEFAULT_MONITOR_INTERVAL);
+    }
+
     @Override
     public void run() {
         for(;;) {

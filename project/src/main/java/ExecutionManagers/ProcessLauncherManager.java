@@ -12,6 +12,11 @@ public class ProcessLauncherManager extends ExecutionManager {
         this.command = command;
     }
 
+    public ProcessLauncherManager(String command) {
+        this(null, command);
+    }
+
+
     @Override
     public void run() {
         Process p = runCommand();
