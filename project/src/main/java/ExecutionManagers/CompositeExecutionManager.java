@@ -61,4 +61,9 @@ public class CompositeExecutionManager extends ExecutionManager {
 
         notifyEnd();
     }
+
+    @Override
+    public boolean hasEnded() {
+        return super.hasEnded() || this.managers.length == 0;
+    }
 }
