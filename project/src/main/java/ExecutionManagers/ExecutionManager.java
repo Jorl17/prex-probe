@@ -31,6 +31,10 @@ public abstract class ExecutionManager implements Runnable {
         managedClass.end();
     }
 
+    public void startAsyncThread() {
+        new Thread(this).start();
+    }
+
     protected Sigar getSigar() {
         return sigar;
     }
