@@ -57,12 +57,11 @@ public class PidExecutionManager extends ExecutionManager {
                 case ProcState.ZOMBIE:
                 case ProcState.IDLE:
                     return false;
-                default:
-                    return true;
             }
+            return procState.getName() == null || procState.getName().isEmpty() || procState.getPpid() < 0;
         } catch (SigarException e) {
             e.printStackTrace();
-            return false;
+            return true;
         }
     }
 }
