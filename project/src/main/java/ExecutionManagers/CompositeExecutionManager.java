@@ -22,6 +22,9 @@ public class CompositeExecutionManager extends ExecutionManager {
         for (ExecutionManager m : managers)
             m.setManagedClass(() -> {});
     }
+    public CompositeExecutionManager(ExecutionManager... managers) {
+        this(null, managers);
+    }
 
     public CompositeExecutionManager(ManagedClass managedClass, ArrayList<ExecutionManager> managers) {
         super(managedClass);
@@ -32,6 +35,10 @@ public class CompositeExecutionManager extends ExecutionManager {
         // Set a dummy listener for all of the other managers
         for (ExecutionManager m : managers)
             m.setManagedClass(() -> {});
+    }
+
+    public CompositeExecutionManager(ArrayList<ExecutionManager> managers) {
+        this(null, managers);
     }
 
     @Override
