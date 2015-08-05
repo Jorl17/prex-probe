@@ -2,6 +2,8 @@ package ExecutionManagers;
 
 import org.hyperic.sigar.Sigar;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -21,22 +23,35 @@ public class CompositeExecutionManager extends ExecutionManager {
             m.setManagedClass(() -> {});
     }
 
+    public CompositeExecutionManager(ManagedClass managedClass, ArrayList<ExecutionManager> managers) {
+        super(managedClass);
+        this.managers = new ExecutionManager[managers.size()];
+        for (int i = 0; i < this.managers.length; i++)
+            this.managers[i] = managers.get(i);
+
+        // Set a dummy listener for all of the other managers
+        for (ExecutionManager m : managers)
+            m.setManagedClass(() -> {});
+    }
+
     @Override
     public void run() {
-        Set<CompositeExecutionManagerCallableAdapter> callables = new HashSet<>();
-        for (ExecutionManager m : managers)
-            callables.add(new CompositeExecutionManagerCallableAdapter(m));
+        if ( managers.length > 0 ) {
+            Set<CompositeExecutionManagerCallableAdapter> callables = new HashSet<>();
+            for (ExecutionManager m : managers)
+                callables.add(new CompositeExecutionManagerCallableAdapter(m));
 
-        ExecutorService executorService = Executors.newFixedThreadPool(callables.size());
-        try {
-            executorService.invokeAll(callables);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            ExecutorService executorService = Executors.newFixedThreadPool(callables.size());
+            try {
+                executorService.invokeAll(callables);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            for (ExecutionManager m : managers)
+                assert (m.hasEnded());
+            executorService.shutdown();
         }
-        for (ExecutionManager m : managers)
-            assert(m.hasEnded());
 
-        executorService.shutdown();
         notifyEnd();
     }
 }
