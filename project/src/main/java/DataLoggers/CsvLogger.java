@@ -34,7 +34,7 @@ public class CsvLogger extends SeparatorLoggerAdapter {
             writer.write("Timestamp" + separator + Utils.join(separator, point.getHeaders()));
             writer.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -45,7 +45,7 @@ public class CsvLogger extends SeparatorLoggerAdapter {
             writer.write(""+point.getFeatureString(separator));
             writer.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
