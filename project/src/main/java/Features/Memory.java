@@ -38,4 +38,9 @@ public class Memory extends Feature {
         this.unit = unit;
         this.mem = mem;
     }
+
+    @Override
+    public float asFloat() {
+        return (float) mem;
+    }
 }

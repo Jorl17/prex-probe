@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/miniprex-monitoring.iml" filepath="$PROJECT_DIR$/miniprex-monitoring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prex-probe.iml" filepath="$PROJECT_DIR$/prex-probe.iml" />
     </modules>
   </component>
 </project>

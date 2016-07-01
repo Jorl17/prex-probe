@@ -12,7 +12,7 @@ public class DataTimestamp {
         this.unixPresentationModeByDefault = unixPresentationModeByDefault;
     }
     public DataTimestamp() {
-        this(false);
+        this(true);
     }
 
     public String asUnixTime() {

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class DataPoint {
     private final ArrayList<Feature> features;
-    private ArrayList<Object> headers;
+    private ArrayList<String> headers;
 
     public DataPoint(ArrayList<Feature> features) {
         this.features = features;
@@ -41,5 +41,9 @@ public class DataPoint {
         for ( Feature f : features )
             h.add(f.getFeatureName());
         return h;
+    }
+
+    public ArrayList<Feature> getFeatures() {
+        return features;
     }
 }

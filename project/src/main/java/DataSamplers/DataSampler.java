@@ -8,6 +8,11 @@ import java.util.ArrayList;
 /**
  * Created by jorl17 on 18/07/15.
  */
+// Generic DataSampler that delegates sampling responsibility down the hierarchy
+// The addFeature and addFeatures methods provide a quick way to feed the value of the features to the DataSampler
+//
+// Thus, the DataSampler is an aggregator for features that pertain some common subject. Note that it does not force
+// features to have matching timestamps. This is done in MultiFeatureSampler.
 public abstract class DataSampler {
     private ArrayList<Feature> features;
     protected final Sigar sigar;
@@ -15,7 +20,7 @@ public abstract class DataSampler {
     public DataSampler(Sigar sigar) {
         assert(sigar != null);
         this.sigar = sigar;
-        this.features = new ArrayList<Feature>();
+        this.features = new ArrayList<>();
     }
 
 /*    public DataSampler() {

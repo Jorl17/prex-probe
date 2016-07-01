@@ -1,7 +1,4 @@
-import ExecutionManagers.CompositeExecutionManager;
-import ExecutionManagers.ExecutionManager;
-import ExecutionManagers.PidExecutionManager;
-import ExecutionManagers.ProcessLauncherManager;
+import ExecutionManagers.*;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import org.hyperic.sigar.SigarException;
@@ -12,14 +9,26 @@ import java.util.List;
 public class Main {
 
     private static class Parameters {
-        @Parameter(names = {"-c", "--csv"}, description = "Output CSV file")
+        @Parameter(names = {"-c", "--csv"}, description = "Output CSV file (not compatible with PreX)")
         private String csv = "test.csv";
 
-        @Parameter(names = {"-s", "--stdout"}, description = "Also log to stdout")
+        @Parameter(names = {"-s", "--stdout"}, description = "Also log to stdout when outputting to CSV")
         private boolean logStdout = false;
+
+        @Parameter(names = {"-f", "--forever"}, description = "Monitor forever")
+        private boolean forever = false;
 
         @Parameter(names = {"-p", "--period"}, description = "Sampling period")
         private int samplingPeriod = 1000;
+
+        @Parameter(names = {"-prex", "--prex-probe"}, description = "Act as PreX probe with the given src name")
+        private String prexSrc = null;
+
+        @Parameter(names = {"-ph", "--prex-host"}, description = "PreX Host")
+        private String prexHost = "localhost";
+
+        @Parameter(names = {"-pp", "--prex-port"}, description = "PreX Port")
+        private int prexPort = 1610;
 
         @Parameter(names = {"-l", "--launch"}, description = "Launch application/command and wait until it ends")
         private List<String> launchers = new ArrayList<>();
@@ -57,9 +66,12 @@ public class Main {
         executionManagers.addAll(launchersToProcessLauncherArrayList(parameters.launchers));
         executionManagers.addAll(pidToPidExecutionManagerArrayList(parameters.pids));
 
-        CompositeExecutionManager manager = new CompositeExecutionManager(executionManagers);
-        MiniPrexMonitor miniPrexMonitor = new MiniPrexMonitor(parameters.csv, parameters.logStdout, parameters.samplingPeriod);
+        if ( parameters.forever )
+            executionManagers.add(new ForeverExecutionManager());
 
-        miniPrexMonitor.main(manager);
+        CompositeExecutionManager manager = new CompositeExecutionManager(executionManagers);
+        PrexProbe prexProbe = new PrexProbe(parameters.csv, parameters.logStdout, parameters.prexSrc != null, parameters.prexSrc, parameters.prexHost, parameters.prexPort, parameters.samplingPeriod);
+
+        prexProbe.main(manager);
     }
 }
