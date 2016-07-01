@@ -1,2 +1,2 @@
-# miniprex-monitoring
-A cross-platform system monitoring utility with logging support built in the context of the MiniPreX project
+# prex-probe
+Cross-platform, PreX compatible probes used to sample real-time system information and metrics
